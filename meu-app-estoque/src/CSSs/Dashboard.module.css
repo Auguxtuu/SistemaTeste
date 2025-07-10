@@ -1,0 +1,193 @@
+/* src/components/Dashboard.module.css */
+
+.container {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 20px auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+}
+
+.heading {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 35px;
+  font-size: 2.2em;
+}
+
+/* Seção geral para agrupamento */
+.section {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 25px;
+  margin-bottom: 40px; /* Espaço entre as seções */
+}
+
+.sectionHeading {
+  color: #34495e;
+  font-size: 1.6em;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+
+/* KPIs Grid */
+.kpisGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.kpiCard {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kpiCard h3 {
+  color: #34495e;
+  font-size: 1.3em;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.kpiValue {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #007bff; /* Cor principal para os números */
+  margin: 10px 0;
+}
+
+.kpiDanger {
+    color: #dc3545; /* Vermelho para KPIs de alerta (estoque baixo/em falta) */
+}
+
+.kpiButton {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+  width: 100%; /* Botão ocupa a largura total do card */
+}
+
+.kpiButton:hover {
+  background-color: #0056b3;
+}
+
+.dangerKpiButton { /* Para botões de KPI de alerta */
+  background-color: #dc3545;
+}
+
+.dangerKpiButton:hover {
+  background-color: #c82333;
+}
+
+/* Tabela de Últimas Movimentações (Reutilizando estilos de tabela) */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.tableHeader,
+.tableCell {
+  border: 1px solid #dee2e6;
+  padding: 12px;
+  text-align: left;
+}
+
+.tableHeader {
+  background-color: #e9ecef;
+  color: #495057;
+  font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+  background-color: #e2e6ea;
+}
+
+.typeBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.8em;
+  color: white;
+}
+
+.badgeEntry { background-color: #28a745; }
+.badgeExit { background-color: #dc3545; }
+
+.productLinkButton {
+  background: none;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+
+.productLinkButton:hover {
+  color: #0056b3;
+}
+
+
+/* Seção de Botões de Módulo / Navegação Rápida */
+.moduleButtonsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Botões um pouco maiores */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.moduleButton {
+  background-color: #007bff; /* Azul padrão */
+  color: white;
+  padding: 20px; /* Aumenta o padding para botões de módulo */
+  border: none;
+  border-radius: 8px; /* Cantos mais arredondados */
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+}
+
+.moduleButton:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px); /* Efeito de elevação no hover */
+}
+
+/* Mensagens de erro para o componente */
+.errorMessage {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 20px;
+}

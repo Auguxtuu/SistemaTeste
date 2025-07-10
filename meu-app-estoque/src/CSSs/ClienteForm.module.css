@@ -1,0 +1,96 @@
+/* src/components/ClienteForm.module.css */
+
+.container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.heading {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.input,
+.textarea,
+.select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  width: calc(100% - 22px);
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.select {
+  cursor: pointer;
+}
+
+.buttonContainer {
+  grid-column: 1 / -1;
+  text-align: right;
+  margin-top: 20px;
+}
+
+.buttonPrimary,
+.buttonSecondary {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  margin-left: 10px;
+}
+
+.buttonPrimary {
+  background-color: #28a745; /* Verde */
+}
+
+.buttonPrimary:hover {
+  background-color: #218838;
+}
+
+.buttonSecondary {
+  background-color: #6c757d; /* Cinza */
+}
+
+.buttonSecondary:hover {
+  background-color: #5a6268;
+}
+
+.inputError {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.errorMessage {
+  color: #dc3545;
+  font-size: 0.85em;
+  margin-top: 5px;
+}

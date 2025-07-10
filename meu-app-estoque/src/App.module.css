@@ -1,0 +1,159 @@
+/* src/App.module.css */
+.appContainer {
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+}
+
+.mainHeading {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+.actionButtons {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.buttonPrimary,
+.buttonSecondary,
+.buttonDanger {
+  padding: 10px 18px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.buttonPrimary {
+  background-color: #28a745; /* Verde para adicionar */
+}
+
+.buttonPrimary:hover {
+  background-color: #218838;
+}
+
+.buttonSecondary {
+  background-color: #007bff; /* Azul para ver detalhes/voltar */
+}
+
+.buttonSecondary:hover {
+  background-color: #0056b3;
+}
+
+.buttonDanger {
+  background-color: #dc3545; /* Vermelho para excluir */
+}
+
+.buttonDanger:hover {
+  background-color: #c82333;
+}
+
+
+/* Seção de Formulário e Detalhes (ProdutoForm já tem seus próprios estilos) */
+.formSection,
+.detailSection {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.detailCard {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+}
+
+.detailCard p {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.detailCard strong {
+  color: #333;
+}
+
+.detailSubHeading {
+  color: #34495e;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.detailActions {
+  text-align: right;
+  margin-top: 20px;
+}
+
+/* Seção de Listagem */
+.listSection {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.searchBar {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table thead tr {
+  background-color: #e9ecef;
+}
+
+.tableHeader,
+.tableCell {
+  border: 1px solid #dee2e6;
+  padding: 12px;
+  text-align: left;
+}
+
+.tableHeader {
+  color: #495057;
+  font-weight: bold;
+}
+
+.tableCell {
+  color: #343a40;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f8f9fa; /* zebra-striping */
+}
+
+.table tbody tr:hover {
+  background-color: #e2e6ea;
+}

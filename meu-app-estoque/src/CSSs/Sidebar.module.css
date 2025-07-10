@@ -1,0 +1,104 @@
+/* src/components/Sidebar.module.css */
+
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px 0;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 0 15px;
+}
+
+.header h2 {
+  color: white;
+  margin: 0;
+  font-size: 1.8em;
+}
+
+.nav {
+  padding: 0 15px;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  margin-bottom: 5px;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  color: white;
+  width: 100%;
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 1.1em;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navButton:hover {
+  background-color: #34495e;
+}
+
+.navButton.activeSection {
+  background-color: #1abc9c;
+  font-weight: bold;
+}
+
+.arrow {
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+}
+
+.activeSection .arrow {
+  transform: rotate(90deg);
+}
+
+.subList {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 5px 20px;
+  border-left: 2px solid #1abc9c;
+}
+
+.subItem {
+  margin-bottom: 2px;
+}
+
+.subButton {
+  background: none;
+  border: none;
+  color: #ecf0f1;
+  width: 100%;
+  padding: 10px 10px;
+  text-align: left;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.subButton:hover {
+  background-color: #4a667b;
+  color: white;
+}
