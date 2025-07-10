@@ -1,6 +1,6 @@
 // src/components/RelatorioEstoqueCritico.js
 import React, { useState, useEffect, useCallback } from 'react';
-import styles from '..CSSs/RelatorioEstoqueCritico.module.css';
+import styles from '../CSSs/RelatorioEstoqueCritico.module.css';
 import { toast } from 'react-toastify';
 
 const API_BASE_URL = 'http://localhost:5000';

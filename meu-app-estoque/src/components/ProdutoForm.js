@@ -1,6 +1,6 @@
 // src/components/ProdutoForm.js
 import React, { useState, useEffect } from 'react';
-import styles from '..CSSs/ProdutoForm.module.css';
+import styles from '../CSSs/ProdutoForm.module.css';
 import { toast } from 'react-toastify';
 
 const API_BASE_URL = 'http://localhost:5000';

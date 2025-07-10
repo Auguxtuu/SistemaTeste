@@ -1,6 +1,6 @@
 // src/components/RegisterForm.js
 import React, { useState } from 'react';
-import styles from '..CSSs/RegisterForm.module.css';
+import styles from '../CSSs/RegisterForm.module.css';
 import { toast } from 'react-toastify';
 
 const API_BASE_URL = 'http://localhost:5000';
