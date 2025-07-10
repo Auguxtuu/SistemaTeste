@@ -73,17 +73,8 @@
   margin-top: auto;
 }
 
-.buttonPrimary {
-  background-color: #28a745; /* Verde */
-}
-
 .buttonPrimary:hover {
   background-color: #218838;
-}
-
-.buttonSecondary {
-  background-color: #6c757d; /* Cinza */
-  margin-left: 10px;
 }
 
 .buttonSecondary:hover {

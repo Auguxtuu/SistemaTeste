@@ -1,6 +1,6 @@
 // src/components/MovimentacaoForm.js
 import React, { useState, useEffect } from 'react';
-import styles from '../CSSs/MovimentacaoForm.module.css';
+import styles from '...CSSs/MovimentacaoForm.module.css';
 import { toast } from 'react-toastify';
 
 const API_BASE_URL = 'http://localhost:5000';
@@ -17,11 +17,11 @@ function MovimentacaoForm({ onSaveSuccess, onCancel, getAuthHeaders }) { // RECE
   const [errors, setErrors] = useState({});
   const [clientes, setClientes] = useState([]);
 
-  // Função para buscar clientes (agora usa getAuthHeaders)
+  // Função para buscar clientes (AGORA USA getAuthHeaders)
   useEffect(() => {
     const fetchClientes = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/clientes?per_page=999`, { headers: getAuthHeaders() }); // USA getAuthHeaders
+        const response = await fetch(`${API_BASE_URL}/clientes?per_page=999`, { headers: getAuthHeaders() }); // <--- CORRIGIDO
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -87,13 +87,14 @@ function MovimentacaoForm({ onSaveSuccess, onCancel, getAuthHeaders }) { // RECE
     try {
       const response = await fetch(`${API_BASE_URL}/movimentacoes`, {
         method: 'POST',
-        headers: getAuthHeaders(), // USA getAuthHeaders
+        headers: getAuthHeaders(), // <--- CORRIGIDO
         body: JSON.stringify(formData),
       });
 
       const result = await response.json();
 
       if (!response.ok) {
+        const errorData = await response.json();
         throw new Error(result.message || 'Erro ao registrar movimentação.');
       }
 

@@ -1,6 +1,6 @@
 // src/components/Sidebar.js
 import React, { useState } from 'react';
-import styles from '../CSSs/Sidebar.module.css';
+import styles from '.CSSs/Sidebar.module.css';
 
 // Sidebar NÃO FAZ chamadas fetch diretamente, mas as funções onNavigate acionam
 // as funções do App.js que usam getAuthHeaders.

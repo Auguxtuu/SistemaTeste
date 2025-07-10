@@ -1,6 +1,6 @@
 // src/components/RelatorioEstoqueCritico.js
 import React, { useState, useEffect, useCallback } from 'react';
-import styles from '../CSSs/RelatorioEstoqueCritico.module.css';
+import styles from '..CSSs/RelatorioEstoqueCritico.module.css';
 import { toast } from 'react-toastify';
 
 const API_BASE_URL = 'http://localhost:5000';
@@ -15,7 +15,7 @@ function RelatorioEstoqueCritico({ onProdutoClick, onCancel, getAuthHeaders }) {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(`${API_BASE_URL}/relatorios/estoque_critico?tipo=${reportType}`, { headers: getAuthHeaders() }); // USA getAuthHeaders
+      const response = await fetch(`${API_BASE_URL}/relatorios/estoque_critico?tipo=${reportType}`, { headers: getAuthHeaders() }); // <--- CORRIGIDO
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -34,35 +34,6 @@ function RelatorioEstoqueCritico({ onProdutoClick, onCancel, getAuthHeaders }) {
     fetchEstoqueCritico();
   }, [fetchEstoqueCritico]);
 
-  /*
-  // FUNÇÃO handleExportToExcel COMENTADA OU REMOVIDA TEMPORARIAMENTE
-  const handleExportToExcel = async () => {
-    try {
-      toast.info("Gerando relatório Excel de estoque crítico...");
-      const response = await fetch(`${API_BASE_URL}/export/estoque_critico?tipo=${reportType}`, { headers: getAuthHeaders() }); // USANDO getAuthHeaders
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      const downloadUrl = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = downloadUrl;
-      a.download = `relatorio_estoque_critico_${reportType}_${new Date().toISOString().slice(0,10).replace(/-/g,'')}_${new Date().toLocaleTimeString('pt-BR', {hour12:false}).replace(/:/g,'')}.xlsx`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(downloadUrl);
-
-      toast.success("Relatório de estoque crítico exportado com sucesso!");
-
-    } catch (err) {
-      console.error("Erro ao exportar estoque crítico para Excel:", err);
-      toast.error("Erro ao exportar relatório: " + err.message);
-    }
-  };
-  */
-
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Relatório de Estoque Crítico</h2>
@@ -78,7 +49,6 @@ function RelatorioEstoqueCritico({ onProdutoClick, onCancel, getAuthHeaders }) {
           <option value="baixo">Estoque Baixo (Atual &lt;= Mínimo)</option>
           <option value="em_falta">Em Falta (Estoque = 0)</option>
         </select>
-        {/* <button onClick={handleExportToExcel} className={styles.buttonPrimary}>Exportar para Excel</button> */}
         <button onClick={onCancel} className={styles.buttonSecondary}>Voltar</button>
       </div>
 

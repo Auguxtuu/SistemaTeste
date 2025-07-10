@@ -1,6 +1,6 @@
 // src/components/MovimentacaoList.js
 import React, { useState, useEffect, useCallback } from 'react';
-import styles from '../CSSs/MovimentacaoList.module.css';
+import styles from '..CSSs/MovimentacaoList.module.css';
 import { toast } from 'react-toastify';
 
 const API_BASE_URL = 'http://localhost:5000';
@@ -53,7 +53,7 @@ function MovimentacaoList({ onProdutoClick, onCancel, getAuthHeaders }) { // REC
         url = `${API_BASE_URL}/movimentacoes?${params.toString()}`;
       }
 
-      const response = await fetch(url, { headers: getAuthHeaders() }); // USA getAuthHeaders
+      const response = await fetch(url, { headers: getAuthHeaders() }); // <--- CORRIGIDO
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

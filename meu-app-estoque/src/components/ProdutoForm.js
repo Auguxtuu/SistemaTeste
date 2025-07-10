@@ -1,11 +1,11 @@
 // src/components/ProdutoForm.js
 import React, { useState, useEffect } from 'react';
-import styles from '../CSSs/ProdutoForm.module.css';
+import styles from '..CSSs/ProdutoForm.module.css';
 import { toast } from 'react-toastify';
 
 const API_BASE_URL = 'http://localhost:5000';
 
-function ProdutoForm({ produtoParaEditar, onSaveSuccess, getAuthHeaders  }) {
+function ProdutoForm({ produtoParaEditar, onSaveSuccess, getAuthHeaders }) { // RECEBE getAuthHeaders
   const [formData, setFormData] = useState({
     nome: '',
     codigo: '',
@@ -35,9 +35,10 @@ function ProdutoForm({ produtoParaEditar, onSaveSuccess, getAuthHeaders  }) {
   const [errors, setErrors] = useState({});
   const [fornecedores, setFornecedores] = useState([]);
 
+  // Função para buscar fornecedores (AGORA USA getAuthHeaders)
   const fetchFornecedores = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/fornecedores?per_page=999`);
+      const response = await fetch(`${API_BASE_URL}/fornecedores?per_page=999`, { headers: getAuthHeaders() }); // <--- CORRIGIDO
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -81,7 +82,7 @@ function ProdutoForm({ produtoParaEditar, onSaveSuccess, getAuthHeaders  }) {
     } else {
       setFormData(prev => ({ ...prev, fornecedor_id: '' }));
     }
-  }, [produtoParaEditar]);
+  }, [produtoParaEditar, getAuthHeaders]); // getAuthHeaders adicionado às dependências
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
@@ -144,7 +145,7 @@ function ProdutoForm({ produtoParaEditar, onSaveSuccess, getAuthHeaders  }) {
     return Object.keys(newErrors).length === 0;
   };
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -158,7 +159,7 @@ const handleSubmit = async (e) => {
     try {
       const response = await fetch(url, {
         method: method,
-        headers: getAuthHeaders(), // USA getAuthHeaders aqui
+        headers: getAuthHeaders(), // <--- CORRIGIDO
         body: JSON.stringify(formData),
       });
 
@@ -170,7 +171,20 @@ const handleSubmit = async (e) => {
       const result = await response.json();
       toast.success(result.message);
       if (onSaveSuccess) { onSaveSuccess(); }
-      // ...
+      if (!produtoParaEditar) {
+        setFormData({
+          nome: '', codigo: '', descricao: '', unidade_medida: 'Unidade',
+          estoque_atual: 0, estoque_minimo: 0, localizacao: '',
+          preco_compra: 0.00, preco_venda: 0.00,
+          ncm: '', cst_csosn: '', cfop: '', origem_mercadoria: '0',
+          icms_aliquota: 0.00, icms_valor: 0.00, ipi_aliquota: 0.00, ipi_valor: 0.00,
+          pis_aliquota: 0.00, pis_valor: 0.00, cofins_aliquota: 0.00, cofins_valor: 0.00,
+          info_adicionais_nf: '',
+          fornecedor_id: ''
+        });
+        setErrors({});
+      }
+
     } catch (error) {
       console.error("Erro ao salvar produto:", error);
       toast.error("Erro: " + error.message);
