@@ -5,21 +5,19 @@ from flask_bcrypt import Bcrypt # Usado para hashing de senhas
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity # NOVO: Importações JWT
 from decimal import Decimal, InvalidOperation
 from datetime import datetime, timedelta # NOVO: Para tempo de expiração do JWT
+from dotenv import load_dotenv
 import os # Para chave secreta
+
+load_dotenv()
 
 app = Flask(__name__)
 
-# --- Configuração do Banco de Dados MySQL ---
-# SUBSTITUA 'root' E 'auguxtuu040302' PELAS SUAS CREDENCIAIS REAIS AQUI!
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:auguxtuu040302@localhost/controle_estoque'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_CONNECTION_STRING')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# --- Configuração JWT ---
-# GERE UMA CHAVE SECRETA FORTE E ÚNICA AQUI!
 # Ex: secrets.token_hex(32) em Python
-app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET_KEY", "voudeixaralgopadraomesmo")
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1) # Token expira em 1 hora
-
+app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET_KEY") 
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 db = SQLAlchemy(app)
 CORS(app)
 bcrypt = Bcrypt(app)
