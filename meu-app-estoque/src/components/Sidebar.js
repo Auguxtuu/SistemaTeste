@@ -1,90 +1,65 @@
 // src/components/Sidebar.js
-import React, { useState } from 'react';
-import styles from '../CSSs/Sidebar.module.css';
 
-// Sidebar NÃO FAZ chamadas fetch diretamente, mas as funções onNavigate acionam
-// as funções do App.js que usam getAuthHeaders.
-function Sidebar({ onNavigate }) {
-  const [openSection, setOpenSection] = useState(null);
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { FaTachometerAlt, FaBoxOpen, FaExchangeAlt, FaChartLine, FaTruck, FaUsers, FaSignOutAlt } from 'react-icons/fa';
+import './Sidebar.css'; // Vamos criar este arquivo de CSS a seguir
 
-  const toggleSection = (section) => {
-    setOpenSection(openSection === section ? null : section);
-  };
-
+// O componente recebe 'username' e a função 'onLogout' como props do App.js
+function Sidebar({ username, onLogout }) {
   return (
-    <div className={styles.sidebar}>
-      <div className={styles.header}>
-        <h2>Menu</h2>
+    <div className="sidebar-container">
+      <div className="sidebar-header">
+        <h3>Controle de Estoque</h3>
+        <p>Bem-vindo(a), {username}!</p>
       </div>
-      <nav className={styles.nav}>
-        <ul className={styles.navList}>
-          <li className={styles.navItem}>
-            <button
-              className={`${styles.navButton} ${openSection === 'gerenciamento' ? styles.activeSection : ''}`}
-              onClick={() => toggleSection('gerenciamento')}
-            >
-              Gerenciamento
-              <span className={styles.arrow}>{openSection === 'gerenciamento' ? '▼' : '▶'}</span>
-            </button>
-            {openSection === 'gerenciamento' && (
-              <ul className={styles.subList}>
-                <li className={styles.subItem}>
-                  <button onClick={() => onNavigate('showProductList')} className={styles.subButton}>
-                    Produtos
-                  </button>
-                </li>
-                <li className={styles.subItem}>
-                  <button onClick={() => onNavigate('showMovimentacaoForm')} className={styles.subButton}>
-                    Registrar Movimentação
-                  </button>
-                </li>
-                <li className={styles.subItem}>
-                  <button onClick={() => onNavigate('showMovimentacaoList')} className={styles.subButton}>
-                    Histórico de Movimentações
-                  </button>
-                </li>
-                <li className={styles.subItem}>
-                  <button onClick={() => onNavigate('showFornecedorList')} className={styles.subButton}>
-                    Fornecedores
-                  </button>
-                </li>
-                <li className={styles.subItem}>
-                  <button onClick={() => onNavigate('showClienteList')} className={styles.subButton}>
-                    Clientes
-                  </button>
-                </li>
-              </ul>
-            )}
+      <nav className="sidebar-nav">
+        <ul>
+          <li>
+            {/* O 'end' na NavLink do Dashboard é importante para que ele não fique ativo em todas as outras rotas que começam com "/" */}
+            <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} end>
+              <FaTachometerAlt />
+              <span>Dashboard</span>
+            </NavLink>
           </li>
-
-          <li className={styles.navItem}>
-            <button
-              className={`${styles.navButton} ${openSection === 'relatorios' ? styles.activeSection : ''}`}
-              onClick={() => toggleSection('relatorios')}
-            >
-              Relatórios
-              <span className={styles.arrow}>{openSection === 'relatorios' ? '▼' : '▶'}</span>
-            </button>
-            {openSection === 'relatorios' && (
-              <ul className={styles.subList}>
-                <li className={styles.subItem}>
-                  <button onClick={() => onNavigate('showRelatorioEstoqueCritico', 'baixo')} className={styles.subButton}>
-                    Estoque Crítico
-                  </button>
-                </li>
-                {/* Futuramente, você pode adicionar mais relatórios aqui */}
-              </ul>
-            )}
+          <li>
+            <NavLink to="/produtos" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+              <FaBoxOpen />
+              <span>Produtos</span>
+            </NavLink>
           </li>
-
-          {/* Botão para o Dashboard (pode ser sempre visível) */}
-          <li className={styles.navItem}>
-            <button onClick={() => onNavigate('showDashboard')} className={styles.navButton}>
-              Dashboard
-            </button>
+          <li>
+            <NavLink to="/movimentacoes" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+              <FaExchangeAlt />
+              <span>Movimentações</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/fornecedores" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+              <FaTruck />
+              <span>Fornecedores</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/clientes" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+              <FaUsers />
+              <span>Clientes</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/relatorios/estoque-critico" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+              <FaChartLine />
+              <span>Relatório Crítico</span>
+            </NavLink>
           </li>
         </ul>
       </nav>
+      <div className="sidebar-footer">
+        <button onClick={onLogout} className="logout-button">
+          <FaSignOutAlt />
+          <span>Sair (Logout)</span>
+        </button>
+      </div>
     </div>
   );
 }
