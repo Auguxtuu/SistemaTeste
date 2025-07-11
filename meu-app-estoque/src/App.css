@@ -302,3 +302,8 @@ h1 {
   color: #2c3e50;
   font-size: 2.5em;
 }
+
+.main-content {
+  margin-left: 250px; /* Mesma largura da sidebar */
+  padding: 20px;
+}
