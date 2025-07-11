@@ -7,6 +7,7 @@ from decimal import Decimal, InvalidOperation
 from datetime import datetime, timedelta # NOVO: Para tempo de expiração do JWT
 from dotenv import load_dotenv
 import os # Para chave secreta
+from sqlalchemy.orm import joinedload
 
 load_dotenv()
 
@@ -692,17 +693,18 @@ def get_dashboard_summary():
     produtos_estoque_baixo = Produto.query.filter(Produto.estoque_atual <= Produto.estoque_minimo).count()
     produtos_em_falta = Produto.query.filter(Produto.estoque_atual == 0).count()
     
-    ultimas_movimentacoes = Movimentacao.query.order_by(Movimentacao.data_hora.desc()).limit(5).all()
+    ultimas_movimentacoes = Movimentacao.query.options(
+        joinedload(Movimentacao.produto),
+        joinedload(Movimentacao.cliente)
+    ).order_by(Movimentacao.data_hora.desc()).limit(5).all()
+
     ultimas_movimentacoes_json = []
     for mov in ultimas_movimentacoes:
         mov_dict = mov.to_dict()
-        produto = Produto.query.get(mov.produto_id)
-        if produto:
-            mov_dict['produto_nome'] = produto.nome
-            mov_dict['produto_codigo'] = produto.codigo
-        cliente = Cliente.query.get(mov.cliente_id)
-        if cliente:
-            mov_dict['cliente_nome'] = cliente.nome
+        # Agora os dados já vieram na consulta, sem precisar buscar de novo
+        mov_dict['produto_nome'] = mov.produto.nome if mov.produto else "Produto Removido"
+        mov_dict['produto_codigo'] = mov.produto.codigo if mov.produto else "N/A"
+        mov_dict['cliente_nome'] = mov.cliente.nome if mov.cliente else None
         ultimas_movimentacoes_json.append(mov_dict)
 
     total_entradas = db.session.query(db.func.sum(Movimentacao.quantidade)).filter_by(tipo_movimentacao='entrada').scalar() or 0
