@@ -6,8 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // Importe seus componentes/páginas
 import Sidebar from './components/Sidebar';
-import Dashboard from './components/Dashboard';
-import ProdutoList from './pages/ProdutoList'; // Você precisará criar este componente
+import Dashboard from './pages/Dashboard.js';
+import ProdutoList from './pages/ProdutoList.js'; // Você precisará criar este componente
 import ProdutoForm from './components/ProdutoForm';
 import MovimentacaoForm from './components/MovimentacaoForm';
 import MovimentacaoList from './components/MovimentacaoList';

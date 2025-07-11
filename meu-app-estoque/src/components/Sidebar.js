@@ -3,7 +3,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaTachometerAlt, FaBoxOpen, FaExchangeAlt, FaChartLine, FaTruck, FaUsers, FaSignOutAlt } from 'react-icons/fa';
-import './Sidebar.css'; // Vamos criar este arquivo de CSS a seguir
+import '../CSSs/Sidebar.css'; // Vamos criar este arquivo de CSS a seguir
 
 // O componente recebe 'username' e a função 'onLogout' como props do App.js
 function Sidebar({ username, onLogout }) {
