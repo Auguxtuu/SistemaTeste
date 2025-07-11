@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import './ProdutoList.css'; // Criaremos este arquivo de CSS a seguir
+import '../CSSs/ProdutoList.css'; // Criaremos este arquivo de CSS a seguir
 
 const API_BASE_URL = 'http://localhost:5000';
 
