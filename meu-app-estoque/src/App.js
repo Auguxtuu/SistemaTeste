@@ -1,13 +1,11 @@
-// src/App.js
+// src/App.js <-- SEU ARQUIVO PRINCIPAL
 
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import AppLayout from './AppLayout'; // Importa o novo componente
+import AppLayout from './AppLayout'; // Importa o componente com toda a lógica
 import './App.css';
 
 function App() {
-  // A ÚNICA responsabilidade deste componente é iniciar o roteador.
-  // Sem estados, sem hooks, sem lógica.
   return (
     <BrowserRouter>
       <AppLayout />
